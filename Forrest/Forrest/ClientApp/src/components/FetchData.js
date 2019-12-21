@@ -1,58 +1,64 @@
 import React, { Component } from 'react';
 
 export class FetchData extends Component {
-  static displayName = FetchData.name;
+  static displayName = 'Forrest';
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+      this.state = { placeDetails: [], search: "", loading: true };
+
+
+      this.onChange = this.onChange.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.populatePlaceDetails();
-  }
+    onChange({ target }) {
+        this.setState({
+            [target.name]: target.value
+        });
+    }
 
-  static renderForecastsTable(forecasts) {
-    return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
-  }
+    static renderPlaceDetails(placeDetails) {
+        return (
+            <div>
+                {placeDetails.map(item =>
+                    <div id="parent">
+                        <div>{item.name}</div>
+                        <div>{item.vicinity}</div>
+                        <a href="{item.website}">{item.website}</a>
+                        <div>Czy otwarte? {item.opening_hours.open_now}</div>
+                    </div>
+                )}
 
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+            </div>
+        );
+    }
 
-    return (
-      <div>
-            Szukaj <input type="text" /> <br /> <br />
-        {contents}
-      </div>
-    );
-  }
+    render() {
+        let contents = this.state.loading ? null : FetchData.renderPlaceDetails(this.state.placeDetails);
+        return (
+            <div>
+                <form onSubmit={this.onSubmit}>
+                    <input type="text" value={this.state.search} onChange={this.onChange} name="search" />
+                    <button>Szukaj</button>
+                    <br /> <br />
+                </form>
+                {contents}
+            </div>
+        );
+    }
 
-  async populatePlaceDetails() {
-    const response = await fetch('placedetails');
-    const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
-  }
+    onSubmit(e) {
+        e.preventDefault();
+        fetch('placedetails', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state.search)
+        })
+            .then(response => response.json())
+            .then(data => this.setState({ placeDetails: data, loading: false }))
+    }
 }

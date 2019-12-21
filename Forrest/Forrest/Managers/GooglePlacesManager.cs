@@ -18,6 +18,7 @@ namespace PRProjekt1.Managers
 
             string placeId = location.candidates.FirstOrDefault().place_id;
 
+            //TODO: Hide api key
             GooglePlaceDetails result;
             string requestUri = "https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyAl48sp1G5yP9Iiohv6sfftXypcfY-7hLE&placeid="
                 + placeId;
@@ -34,6 +35,7 @@ namespace PRProjekt1.Managers
 
         public async Task<GooglePlace> FindPlace(string placeName)
         {
+            //TODO: Hide api key
             string requestUri = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" +
                 $"{placeName}&inputtype=textquery&fields=formatted_address,name,place_id&key=AIzaSyAl48sp1G5yP9Iiohv6sfftXypcfY-7hLE";
             GooglePlace result;

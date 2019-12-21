@@ -21,15 +21,20 @@ namespace PRProjekt1.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<PlaceDetails> GetPlaceDetails(string placeName)
+        [HttpPost]
+        public IEnumerable<PlaceDetails> GetPlaceDetails([FromBody]string search)
         {
             GooglePlacesManager mgr = new GooglePlacesManager();
-            var taskResult = mgr.GetPlaceDetails("kura buffalo wings");
+            var taskResult = mgr.GetPlaceDetails(search);
             if (taskResult == null) { return null; }
             List<PlaceDetails> list = new List<PlaceDetails>();
             list.Add(taskResult.Result.result);
             return list;
         }
+    }
+
+    public class Place
+    {
+        public string Name { get; set; }
     }
 }
