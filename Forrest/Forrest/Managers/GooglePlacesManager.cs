@@ -12,7 +12,20 @@ namespace PRProjekt1.Managers
     public class GooglePlacesManager
     {
 
-        public async Task<GooglePlaceDetails> GetPlaceDetails(string placeName)
+        public List<PlaceDetails> GetPlaceDetails(string placeName)
+        {
+            var taskResult = GetPlaceDetailsAPI(placeName);
+            if (taskResult == null) { return null; }
+            List<PlaceDetails> list = new List<PlaceDetails>();
+            list.Add(taskResult.Result?.result);
+
+            return list;
+        }
+
+
+
+
+        public async Task<GooglePlaceDetails> GetPlaceDetailsAPI(string placeName)
         {
             var location = FindPlace(placeName).Result;
 

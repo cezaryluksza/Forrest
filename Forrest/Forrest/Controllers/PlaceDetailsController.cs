@@ -25,16 +25,7 @@ namespace PRProjekt1.Controllers
         public IEnumerable<PlaceDetails> GetPlaceDetails([FromBody]string search)
         {
             GooglePlacesManager mgr = new GooglePlacesManager();
-            var taskResult = mgr.GetPlaceDetails(search);
-            if (taskResult == null) { return null; }
-            List<PlaceDetails> list = new List<PlaceDetails>();
-            list.Add(taskResult.Result?.result);
-            return list;
+            return mgr.GetPlaceDetails(search);
         }
-    }
-
-    public class Place
-    {
-        public string Name { get; set; }
     }
 }
