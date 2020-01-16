@@ -26,7 +26,7 @@ export class FetchData extends Component {
                         <div>{item.name}</div>
                         <div>{item.vicinity}</div>
                         <a href="{item.website}">{item.website}</a>
-                        <div>Czy otwarte? {item.opening_hours.open_now}</div>
+                        <div>Czy otwarte? {item.opening_hours != null ? item.opening_hours.open_now ? 'Tak' : 'Nie' : null}</div>
                     </div>
                 )}
 

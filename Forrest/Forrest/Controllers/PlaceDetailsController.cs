@@ -28,7 +28,7 @@ namespace PRProjekt1.Controllers
             var taskResult = mgr.GetPlaceDetails(search);
             if (taskResult == null) { return null; }
             List<PlaceDetails> list = new List<PlaceDetails>();
-            list.Add(taskResult.Result.result);
+            list.Add(taskResult.Result?.result);
             return list;
         }
     }
