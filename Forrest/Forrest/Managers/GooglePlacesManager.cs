@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PRProjekt1.Models;
+using Forrest.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace PRProjekt1.Managers
+namespace Forrest.Managers
 {
     public class GooglePlacesManager
     {

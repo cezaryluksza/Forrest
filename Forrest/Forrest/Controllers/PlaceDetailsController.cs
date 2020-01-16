@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PRProjekt1.Managers;
-using PRProjekt1.Models;
+using Forrest.Managers;
+using Forrest.Models;
 using RestSharp;
 
-namespace PRProjekt1.Controllers
+namespace Forrest.Controllers
 {
     [ApiController]
     [Route("[controller]")]

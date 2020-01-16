@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PRProjekt1.Models
+namespace Forrest.Models
 {
     public class Candidate
     {
