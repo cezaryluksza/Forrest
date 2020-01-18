@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Styles.css';
 
 export class FetchData extends Component {
   static displayName = 'Forrest';
@@ -26,7 +27,11 @@ export class FetchData extends Component {
                         <div>{item.name}</div>
                         <div>{item.vicinity}</div>
                         <a href="{item.website}">{item.website}</a>
-                        <div>Czy otwarte? {item.opening_hours != null ? item.opening_hours.open_now ? 'Tak' : 'Nie' : null}</div>
+                        <div>{item.opening_hours != null ? item.opening_hours.open_now ? 'Czy otwarte? Tak' : 'Czy otwarte? Nie' : null}</div>
+                        <br />
+                        <div className="weatherIcon"><img src={`https://www.accuweather.com/images/weathericons/${item.weatherForecast.weatherIcon}.svg`} width="60px" height="60px"></img></div>
+                        <div className="temperature"><span> {item.weatherForecast.temperature.value}&#8451; </span></div>
+                        <div className="weatherPhrase"><span>{item.weatherForecast.iconPhrase}</span></div>
                     </div>
                 )}
 

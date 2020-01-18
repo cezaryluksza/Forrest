@@ -119,6 +119,7 @@ namespace Forrest.Models
         public int utc_offset { get; set; }
         public string vicinity { get; set; }
         public string website { get; set; }
+        public WeatherForecast WeatherForecast { get; set; }
     }
 
     public class GooglePlaceDetails
