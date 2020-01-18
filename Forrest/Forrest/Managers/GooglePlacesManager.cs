@@ -29,8 +29,11 @@ namespace Forrest.Managers
 
             Place googlePlace = await FindPlaceFromText(placeName);
 
-            GooglePlaceDetails googlePlaceDetails = await GetPlaceDetailsAPI(googlePlace.place_id);
-            WeatherForecastGeoposition pos = await weatherForecastManager.GetPlaceId(googlePlace.geometry.location.lat, googlePlace.geometry.location.lng);
+            var placeTask = Task.Run(() => GetPlaceDetailsAPI(googlePlace.place_id));
+            var geoPositionTask = Task.Run(() => weatherForecastManager.GetPlaceId(googlePlace.geometry.location.lat, googlePlace.geometry.location.lng));
+
+            GooglePlaceDetails googlePlaceDetails = await placeTask;
+            WeatherForecastGeoposition pos = await geoPositionTask;
 
             googlePlaceDetails.result.WeatherForecast = await weatherForecastManager.GetHourlyForecast(pos.Key);
 

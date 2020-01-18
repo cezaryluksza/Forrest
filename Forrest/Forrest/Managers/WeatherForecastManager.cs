@@ -14,7 +14,7 @@ namespace Forrest.Managers
         public async Task<WeatherForecastGeoposition> GetPlaceId(double latitude, double longitude)
         {
             //TODO: Hide api key
-            string requestUri = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=EofA5piB0DPoEZNDdGRzAohuIIdurBHI&q=" +
+            string requestUri = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=JLcksIZPAKuZOXe2niRAEBCmbOJ1uVhS&q=" +
                 $"{latitude}%2C{longitude}&language=pl-pl";
             WeatherForecastGeoposition result;
 
@@ -30,7 +30,7 @@ namespace Forrest.Managers
         {
             //TODO: Hide api key
             string requestUri = "http://dataservice.accuweather.com/forecasts/v1/hourly/1hour/" +
-                                $"{placeId}?apikey=EofA5piB0DPoEZNDdGRzAohuIIdurBHI&language=pl-pl&metric=true";
+                                $"{placeId}?apikey=JLcksIZPAKuZOXe2niRAEBCmbOJ1uVhS&language=pl-pl&metric=true";
             List<WeatherForecast> result;
 
             using (var client = new HttpClient())
