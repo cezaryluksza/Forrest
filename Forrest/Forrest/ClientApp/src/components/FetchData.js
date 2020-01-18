@@ -26,7 +26,7 @@ export class FetchData extends Component {
                     <div id="parent">
                         <div>{item.name}</div>
                         <div>{item.vicinity}</div>
-                        <a href="{item.website}">{item.website}</a>
+                        <a href={item.website}>{item.website}</a>
                         <div>{item.opening_hours != null ? item.opening_hours.open_now ? 'Czy otwarte? Tak' : 'Czy otwarte? Nie' : null}</div>
                         <br />
                         <div className="weatherIcon"><img src={`https://www.accuweather.com/images/weathericons/${item.weatherForecast.weatherIcon}.svg`} width="60px" height="60px"></img></div>
